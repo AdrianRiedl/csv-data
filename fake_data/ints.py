@@ -3,16 +3,13 @@ import sys
 
 size = int(sys.argv[1])
 
-fileName = 'ints{}.csv'.format(size)
+fileName = 'ints{}.tsv'.format(size)
 
 with open(fileName, mode='w', newline='\n') as file, \
-        open(fileName + "_meta.csv", mode='w', newline='\n', encoding='utf-8') as meta_file:
-    writer = csv.writer(file)
+        open(fileName + "_meta.tsv", mode='w', newline='\n', encoding='utf-8') as meta_file:
+    writer = csv.writer(file, delimiter='\t', lineterminator='\n')
 
     header = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
-
-    # Header Row
-    writer.writerow(header)
 
     meta = [0 for x in header]
 

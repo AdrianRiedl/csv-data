@@ -14,12 +14,12 @@ assert columns > 0
 percentage = int(sys.argv[3])
 assert 0 <= percentage <= 100
 
-fileName = 'ints_null{}.csv'.format(size)
+fileName = 'ints_null{}.tsv'.format(size)
 
 numberOfNotNullValues = int(size * (100 - percentage) / 100)
 
 with open(fileName, mode='w') as file:
-    writer = csv.writer(file, lineterminator='\n')
+    writer = csv.writer(file, delimiter='\t', lineterminator='\n')
 
     header = range(0, columns)
 
@@ -28,7 +28,7 @@ with open(fileName, mode='w') as file:
     for i in range(0, numberOfNotNullValues):
         columnData.append(str(i))
     for i in range(numberOfNotNullValues, size):
-        columnData.append("NULL")
+        columnData.append("")
 
     tableData = [columnData.copy() for i in range(0, columns)]
     for col in tableData:
